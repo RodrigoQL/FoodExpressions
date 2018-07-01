@@ -25,6 +25,7 @@ namespace FoodExpressions
         public MainWindow()
         {
             InitializeComponent();
+            DefaultTrain.Generate();
             person = "022";
             ShowPerson();
         }
@@ -76,12 +77,12 @@ namespace FoodExpressions
         }
         public void NextFrame(object sender, RoutedEventArgs e)
         {
-            imageModifier += 30;
+            imageModifier += 5;
             DisplayEmotion();
         }
         public void PrevFrame(object sender, RoutedEventArgs e)
         {
-            imageModifier -= 30;
+            imageModifier -= 5;
             DisplayEmotion();
         }
     }

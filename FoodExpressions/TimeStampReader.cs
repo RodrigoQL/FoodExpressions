@@ -10,16 +10,14 @@ namespace FoodExpressions
 {
     public class TimeStampReader
     {
-        private static string fileName = "timestamps.txt";
-        private static string directory = Directory.GetParent( Environment.CurrentDirectory ).ToString();
-        private static string path = Path.GetFullPath( Path.Combine( directory, @"..\..\..\" ) );
-        
         public static Dictionary<string,int> GetTimeStamps(string candidate)
         {
             Dictionary<string, int> timestamps = new Dictionary<string, int>();
+            
+            // INITIAL TIME STAMPS
             timestamps.Add( "sampleContempt", 0 );
 
-            string fileString = File.ReadAllLines( buildPath( candidate ) )[0];
+            string fileString = File.ReadAllLines( PathHelper.TimeStampsPath( candidate ) )[0];
             Dictionary<string,double[]> dictionary = JsonConvert.DeserializeObject
                 ( fileString, typeof(Dictionary<string,double[]>) ) as Dictionary<string, double[]>;
             foreach(var item in dictionary)
@@ -27,12 +25,10 @@ namespace FoodExpressions
                 timestamps.Add( item.Key, ( int )item.Value[0] );
             }
 
+            // NEW TIME STAMPS
+
+
             return timestamps;
         } 
-        
-        private static string buildPath(string candidate)
-        {
-            return path + "\\" + candidate + "\\" + fileName;
-        }
     }
 }
