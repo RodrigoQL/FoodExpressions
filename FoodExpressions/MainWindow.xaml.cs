@@ -20,30 +20,64 @@ namespace FoodExpressions
     {
         private Dictionary<string, int> emoteDictionary;
         private string person;
+        private int frame;
         private string currentEmotion = "sampleNormal";
-        private int imageModifier = 0;
+        private int frameModifier = 0;
+        public bool imageExists = false;
         public MainWindow()
         {
             InitializeComponent();
-            DefaultTrain.Generate();
+            TrainSampleGenerator.GenerateBase();
             person = "022";
             ShowPerson();
         }
 
         private void ShowPerson()
         {
+            personLabel.Content = person;
+            currentEmotion = "sampleNormal";
             emoteDictionary = TimeStampReader.GetTimeStamps( person );
-            Display.Source = ImageDisplay.GetImage( person, emoteDictionary["sampleNormal"]  );
+            frameModifier = 0;
+            DisplayEmotion();
+            /*
+            BitmapImage image = ImageDisplay.GetImageFromTrain( person, currentEmotion );
+            if ( image != null)
+            {
+                imageExists = true;
+                Display.Source = image;
+            }
+            else
+            {
+                imageExists = false;
+                Display.Source = ImageDisplay.GetImage( person, emoteDictionary[currentEmotion] );
+            }
+            
             imageModifier = 0;
+            frame = emoteDictionary[currentEmotion] + imageModifier;
+            frameLabel.Content = frame;
+            */
         }
         private void DisplayEmotion(object sender = null, RoutedEventArgs e = null)
         {
             if (sender != null)
             { 
                 currentEmotion = ( sender as Button ).Name.ToString();
-                imageModifier = 0;
+                frameModifier = 0;
             }
-            Display.Source = ImageDisplay.GetImage( person, emoteDictionary[currentEmotion] + imageModifier );
+            frame = emoteDictionary[currentEmotion] + frameModifier;
+            imageExists = ImageDisplay.ImageExists( person, currentEmotion, frame );
+            if (imageExists)
+            {
+                removeSample.Visibility = Visibility.Visible;
+                addSample.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                removeSample.Visibility = Visibility.Hidden;
+                addSample.Visibility = Visibility.Visible;
+            }
+            Display.Source = ImageDisplay.GetImage( person, frame );
+            frameLabel.Content = frame;
         }
         private void NumberBuilder(int addition)
         {
@@ -77,13 +111,29 @@ namespace FoodExpressions
         }
         public void NextFrame(object sender, RoutedEventArgs e)
         {
-            imageModifier += 5;
+            frameModifier += 5;
             DisplayEmotion();
         }
         public void PrevFrame(object sender, RoutedEventArgs e)
         {
-            imageModifier -= 5;
+            frameModifier -= 5;
             DisplayEmotion();
+        }
+        public void AddSample(object sender, RoutedEventArgs e)
+        {
+            TrainSampleGenerator.AddImage( person, currentEmotion, frame );
+
+            emoteDictionary = TimeStampReader.GetTimeStamps( person );
+            frameModifier = 0;
+            DisplayEmotion( );
+        }
+        public void RemoveSample(object sender, RoutedEventArgs e)
+        {
+            TrainSampleGenerator.RemoveImage( person, currentEmotion, frame );
+
+            emoteDictionary = TimeStampReader.GetTimeStamps( person );
+            frameModifier = 0;
+            DisplayEmotion( );
         }
     }
 }

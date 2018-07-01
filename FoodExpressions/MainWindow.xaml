@@ -11,6 +11,10 @@
             <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
 
         <StackPanel 
             Name="emotePanel"
@@ -19,13 +23,6 @@
             VerticalAlignment="Center"
             Visibility="Visible"
             >
-            <Label 
-                Name="nameLabel"
-                Content="John Doe" 
-                FontSize="26"
-                FontWeight="Bold"
-                HorizontalAlignment="Center"
-                />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                         Margin="5,25,5,5">
@@ -36,6 +33,13 @@
                     Margin="5, 5, 5, 0"
                     Content="😐"
                     FontSize="18" Click="DisplayEmotion"/>
+                <Button
+                    Name="sampleContempt"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 0"
+                    Content="🙄"
+                    FontSize="18" Click="DisplayEmotion"/> 
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
@@ -88,46 +92,38 @@
                     FontSize="18" Click="DisplayEmotion"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Margin="5,0,5,25">
-                <Button
-                    Name="nextPerson"
-                    Width="50"
-                    Height="38"
-                    Margin="5, 5, 5, 5"
-                    Content="NEXT"
-                    FontSize="18" Click="NextPerson"/>
-            </StackPanel>
+            
+        </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Margin="5,0,5,25">
-                <Button
-                    Name="prevFrame"
-                    Width="50"
-                    Height="38"
-                    Margin="5, 5, 5, 5"
-                    Content="PREV"
-                    FontSize="18" Click="PrevFrame"/>
-                <Button
-                    Name="nextFrame"
-                    Width="50"
-                    Height="38"
-                    Margin="5, 5, 5, 5"
-                    Content="NEXT"
-                    FontSize="18" Click="NextFrame"/>
-                
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Margin="5,0,5,25">
-                <Button
-                    Name="prevPerson"
-                    Width="50"
-                    Height="38"
-                    Margin="5, 5, 5, 5"
-                    Content="NEXT"
-                    FontSize="18" Click="PrevPerson"/>
-            </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1"
+                    Margin="30px">
+            <Label 
+                Content="Persona" 
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                />
+            <Label 
+                Name="personLabel"
+                Content="001" 
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                />
+            <Label 
+                Content="Frame" 
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                Margin="0px 20px 0px 0px"
+                />
+            <Label 
+                Name="frameLabel"
+                Content="1" 
+                FontSize="20"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                />
         </StackPanel>
 
 
@@ -136,6 +132,63 @@
                 <Image Name="Display"/>
             </StackPanel>
         </Border>
-        
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Margin="5,0,5,25">
+                    <Button
+                        Name="nextPerson"
+                        Width="50"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="NEXT"
+                        FontSize="18" Click="NextPerson"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Margin="5,0,5,25">
+                    <Button
+                        Name="prevFrame"
+                        Width="50"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="PREV"
+                        FontSize="18" Click="PrevFrame"/>
+                    <Button
+                        Name="nextFrame"
+                        Width="50"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="NEXT"
+                        FontSize="18" Click="NextFrame"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Margin="5,0,5,25">
+                    <Button
+                        Name="prevPerson"
+                        Width="50"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="NEXT"
+                        FontSize="18" Click="PrevPerson"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Button Name="addSample"
+                        Width="100"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="ADD"
+                        Background="#0F0"
+                        FontSize="18" Click="AddSample"/>
+                <Button Name="removeSample"
+                        Width="100"
+                        Height="38"
+                        Margin="5, 5, 5, 5"
+                        Content="REMOVE"
+                        Background="#F34"
+                        FontSize="18" Click="RemoveSample"/>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

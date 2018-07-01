@@ -57,7 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DefaultTrain.cs" />
+    <Compile Include="TrainSampleGenerator.cs" />
     <Compile Include="ImageDisplay.cs" />
     <Compile Include="PathHelper.cs" />
     <Compile Include="TimeStampReader.cs" />
