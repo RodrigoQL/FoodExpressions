@@ -13,10 +13,13 @@ namespace FoodExpressions
         public static Dictionary<string,int> GetTimeStamps(string person)
         {
             Dictionary<string, int> timestamps = new Dictionary<string, int>();
-
+            if (!File.Exists( PathHelper.TimeStampsPath( person ) ))
+            {
+                return null;
+            }
             // INITIAL TIME STAMPS
             timestamps.Add( "sampleContempt", 0 );
-
+            
             string fileString = File.ReadAllLines( PathHelper.TimeStampsPath( person ) )[0];
             Dictionary<string, double[]> dictionary = JsonConvert.DeserializeObject
                 ( fileString, typeof( Dictionary<string, double[]> ) ) as Dictionary<string, double[]>;

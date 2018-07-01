@@ -24,6 +24,7 @@ namespace FoodExpressions
         private string currentEmotion = "sampleNormal";
         private int frameModifier = 0;
         public bool imageExists = false;
+        public bool validPerson = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,32 +37,38 @@ namespace FoodExpressions
         {
             personLabel.Content = person;
             currentEmotion = "sampleNormal";
+            emotionLabel.Content = currentEmotion.Replace( "sample", "" );
+            CleanWindow();
+            sampleNormal.Background = Brushes.LightSkyBlue;
             emoteDictionary = TimeStampReader.GetTimeStamps( person );
             frameModifier = 0;
-            DisplayEmotion();
-            /*
-            BitmapImage image = ImageDisplay.GetImageFromTrain( person, currentEmotion );
-            if ( image != null)
+            if (emoteDictionary == null)
             {
-                imageExists = true;
-                Display.Source = image;
+                personLabel.Content = person + " NOPERSON";
+                frameLabel.Content = "NOPERSON";
+                Display.Source = null;
+                validPerson = false;
             }
             else
             {
-                imageExists = false;
-                Display.Source = ImageDisplay.GetImage( person, emoteDictionary[currentEmotion] );
+                validPerson = true;
+                DisplayEmotion();
             }
-            
-            imageModifier = 0;
-            frame = emoteDictionary[currentEmotion] + imageModifier;
-            frameLabel.Content = frame;
-            */
         }
         private void DisplayEmotion(object sender = null, RoutedEventArgs e = null)
         {
+            if (!validPerson)
+            {
+                return;
+            }
+            
             if (sender != null)
-            { 
-                currentEmotion = ( sender as Button ).Name.ToString();
+            {
+                Button button = sender as Button;
+                CleanWindow();
+                button.Background = Brushes.LightSkyBlue; ;
+                currentEmotion = ( button ).Name.ToString();
+                emotionLabel.Content = currentEmotion.Replace( "sample", "" );
                 frameModifier = 0;
             }
             frame = emoteDictionary[currentEmotion] + frameModifier;
@@ -134,6 +141,39 @@ namespace FoodExpressions
             emoteDictionary = TimeStampReader.GetTimeStamps( person );
             frameModifier = 0;
             DisplayEmotion( );
+        }
+        public void KeyPressed(object sender, KeyEventArgs e)
+        {
+            if ( e.Key == Key.Left )
+            {
+                PrevFrame( sender, e );
+                return;
+            }
+            if(e.Key == Key.Right)
+            {
+                NextFrame( sender, e );
+                return;
+            }
+            if(e.Key== Key.Up)
+            {
+                NextPerson(sender, e);
+                return;
+            }
+            if (e.Key == Key.Down)
+            {
+                PrevPerson( sender, e );
+            }
+        }
+        private void CleanWindow()
+        {
+            sampleAngry.Background = Brushes.LightGray;
+            sampleSad.Background = Brushes.LightGray;
+            sampleHappy.Background = Brushes.LightGray;
+            sampleNormal.Background = Brushes.LightGray;
+            sampleFear.Background = Brushes.LightGray;
+            sampleDisgust.Background = Brushes.LightGray;
+            sampleSurprise.Background = Brushes.LightGray;
+            sampleContempt.Background = Brushes.LightGray;
         }
     }
 }

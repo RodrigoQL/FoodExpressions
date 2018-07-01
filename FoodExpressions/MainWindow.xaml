@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodExpressions"
         mc:Ignorable="d"
+        KeyDown="KeyPressed"
         Title="MainWindow" Height="800" Width="975">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,24 +18,28 @@
         </Grid.RowDefinitions>
 
         <StackPanel 
-            Name="emotePanel"
             Grid.Column="0" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Visibility="Visible"
-            >
+            Visibility="Visible" >
+
+            <Label Name="emotionLabel"
+                Content="Normal" 
+                FontSize="17"
+                FontWeight="Bold"
+                HorizontalAlignment="Center">
+                
+            </Label>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                         Margin="5,25,5,5">
-                <Button
-                    Name="sampleNormal"
+                <Button Name="sampleNormal"
                     Width="50"
                     Height="38"
                     Margin="5, 5, 5, 0"
                     Content="😐"
                     FontSize="18" Click="DisplayEmotion"/>
-                <Button
-                    Name="sampleContempt"
+                <Button Name="sampleContempt"
                     Width="50"
                     Height="38"
                     Margin="5, 5, 5, 0"
@@ -135,17 +140,17 @@
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                            Margin="5,0,5,25">
+                            Margin="5,0,5,2">
                     <Button
                         Name="nextPerson"
-                        Width="50"
+                        Width="100"
                         Height="38"
                         Margin="5, 5, 5, 5"
-                        Content="NEXT"
+                        Content="Next Person"
                         FontSize="18" Click="NextPerson"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                            Margin="5,0,5,25">
+                            Margin="5,0,5,5">
                     <Button
                         Name="prevFrame"
                         Width="50"
@@ -162,13 +167,13 @@
                         FontSize="18" Click="NextFrame"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                            Margin="5,0,5,25">
+                            Margin="5,0,5,5">
                     <Button
                         Name="prevPerson"
-                        Width="50"
+                        Width="100"
                         Height="38"
                         Margin="5, 5, 5, 5"
-                        Content="NEXT"
+                        Content="Prev Person"
                         FontSize="18" Click="PrevPerson"/>
                 </StackPanel>
             </StackPanel>
