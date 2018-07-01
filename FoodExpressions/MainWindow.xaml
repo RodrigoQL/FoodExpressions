@@ -5,8 +5,137 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodExpressions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="800" Width="975">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel 
+            Name="emotePanel"
+            Grid.Column="0" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="Visible"
+            >
+            <Label 
+                Name="nameLabel"
+                Content="John Doe" 
+                FontSize="26"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,25,5,5">
+                <Button
+                    Name="sampleNormal"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 0"
+                    Content="😐"
+                    FontSize="18" Click="DisplayEmotion"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,0,5,0">
+                <Button
+                    Name="sampleHappy"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="😊"
+                    FontSize="18" Click="DisplayEmotion"/>
+                <Button
+                    Name="sampleSad"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="☹"
+                    FontSize="18" Click="DisplayEmotion"/>
+                <Button
+                    Name="sampleAngry"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="😠"
+                    FontSize="18" Click="DisplayEmotion"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,0,5,25">
+                <Button
+                    Name="sampleDisgust"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="🤢"
+                    FontSize="18" Click="DisplayEmotion"/>
+                <Button
+                    Name="sampleSurprise"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="😯"
+                    FontSize="18" Click="DisplayEmotion"/>
+                <Button
+                    Name="sampleFear"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="😨"
+                    FontSize="18" Click="DisplayEmotion"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,0,5,25">
+                <Button
+                    Name="nextPerson"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="NEXT"
+                    FontSize="18" Click="NextPerson"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,0,5,25">
+                <Button
+                    Name="prevFrame"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="PREV"
+                    FontSize="18" Click="PrevFrame"/>
+                <Button
+                    Name="nextFrame"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="NEXT"
+                    FontSize="18" Click="NextFrame"/>
+                
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="5,0,5,25">
+                <Button
+                    Name="prevPerson"
+                    Width="50"
+                    Height="38"
+                    Margin="5, 5, 5, 5"
+                    Content="NEXT"
+                    FontSize="18" Click="PrevPerson"/>
+            </StackPanel>
+        </StackPanel>
+
+
+        <Border Padding="15" Grid.Column="1">
+            <StackPanel VerticalAlignment="Center" Background="AliceBlue">
+                <Image Name="Display"/>
+            </StackPanel>
+        </Border>
         
     </Grid>
 </Window>
