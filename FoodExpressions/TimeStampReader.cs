@@ -18,14 +18,17 @@ namespace FoodExpressions
                 return null;
             }
             // INITIAL TIME STAMPS
-            timestamps.Add( "sampleContempt", 0 );
+            foreach(var emotion in ImageDisplay.GetEmotionDictionary())
+            {
+                timestamps[emotion.Key] = 0;
+            }
             
             string fileString = File.ReadAllLines( PathHelper.TimeStampsPath( person ) )[0];
             Dictionary<string, double[]> dictionary = JsonConvert.DeserializeObject
                 ( fileString, typeof( Dictionary<string, double[]> ) ) as Dictionary<string, double[]>;
             foreach (var item in dictionary)
             {
-                timestamps.Add( item.Key, ( int )item.Value[0] );
+                timestamps[item.Key] =  ( int )item.Value[0] ;
             }
 
             // NEW TIME STAMPS
