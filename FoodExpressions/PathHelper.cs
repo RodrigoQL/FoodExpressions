@@ -11,6 +11,7 @@ namespace FoodExpressions
     {
         private static string DIRECTORY = Directory.GetParent( Environment.CurrentDirectory ).ToString();
         private static string PATH = Path.GetFullPath( Path.Combine( DIRECTORY, @"" ) );
+        //private static string PATH = Path.GetFullPath( Path.Combine( DIRECTORY, @"..\..\..\" ) );
 
         public static string TimeStampsPath(string person)
         {

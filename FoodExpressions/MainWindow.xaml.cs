@@ -71,7 +71,16 @@ namespace FoodExpressions
                 emotionLabel.Content = currentEmotion.Replace( "sample", "" );
                 frameModifier = 0;
             }
-            frame = emoteDictionary[currentEmotion] + frameModifier;
+
+            if (!emoteDictionary.ContainsKey( currentEmotion ))
+            {
+                frame = frameModifier;
+            }
+            else
+            {
+                frame = emoteDictionary[currentEmotion] + frameModifier;
+            }
+            
             imageExists = ImageDisplay.ImageExists( person, currentEmotion, frame );
             if (imageExists)
             {

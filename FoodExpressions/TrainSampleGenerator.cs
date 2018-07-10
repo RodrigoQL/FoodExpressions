@@ -31,8 +31,13 @@ namespace FoodExpressions
 
             Directory.CreateDirectory( PathHelper.PersonTrainPath( person ) );
             Dictionary<string, int> timestamps = TimeStampReader.GetTimeStamps( person );
-
             Dictionary<string, int> emotions = ImageDisplay.GetEmotionDictionary();
+
+            if (timestamps == null)
+            {
+                return;
+            }
+
             foreach (var item in timestamps)
             {
                 if (item.Key.StartsWith( "sample" ))
